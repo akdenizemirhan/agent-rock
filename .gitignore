@@ -3,6 +3,6 @@
 *.swo
 __pycache__/
 *.pyc
-benchmarks/runs/
-benchmarks/pair-runs/
-benchmarks/workdir/
+benchmarks/
+TODO.md
+TODO.benchmark-hardening.md
