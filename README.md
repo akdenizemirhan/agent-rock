@@ -4,19 +4,6 @@
 
 agent-rock is an open-source Claude Code skill that performs thorough static security analysis of any codebase. It thinks like a penetration tester with full source code access, systematically scanning across 8 security categories and producing a professional Markdown report with severity-rated, evidence-backed findings.
 
-## Benchmark
-
-Latest committed benchmark snapshot:
-
-![agent-rock benchmark](benchmarks/latest-scoreboard.svg)
-
-The SVG is generated from the benchmark harness and is safe to embed directly in GitHub README files.
-Refresh it after a run with:
-
-```bash
-python3 benchmarks/scripts/finalize_run.py --run-name baseline-4
-```
-
 ## Features
 
 - **Auto-detects tech stack** — Works with JS/TS, Python, Java, Go, Ruby, PHP, C#, Rust, C/C++
