@@ -1,5 +1,10 @@
 # agent-rock
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/akdenizemirhan/agent-rock?style=social)](https://github.com/akdenizemirhan/agent-rock/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/akdenizemirhan/agent-rock)](https://github.com/akdenizemirhan/agent-rock/issues)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://claude.ai)
+
 **Deep security audit skill for Claude Code.**
 
 agent-rock is an open-source Claude Code skill that performs thorough static security analysis of any codebase. It thinks like a penetration tester with full source code access, systematically scanning across 8 security categories and producing a professional Markdown report with severity-rated, evidence-backed findings.
