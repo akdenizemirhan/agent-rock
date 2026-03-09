@@ -87,6 +87,33 @@ focused audit plan so you only load the framework references that matter.
 **When to load focused guidance:**
 - Load [laravel.md](laravel.md) when the app uses Laravel routing, middleware, Eloquent, or request validation.
 
+## C# / .NET
+
+**Manifest clues:**
+- `.csproj` files with `Microsoft.AspNetCore.App`
+- `Microsoft.EntityFrameworkCore`, `Microsoft.AspNetCore.Identity`
+
+**Config and file clues:**
+- `Program.cs`, `Startup.cs`, `appsettings.json`
+- `Controllers/`, `[ApiController]`, `[Authorize]`
+
+**When to load focused guidance:**
+- Load [aspnet.md](aspnet.md) when you see ASP.NET Core MVC, Web API, Identity, or Entity Framework patterns.
+
+## Go Web Frameworks
+
+**Manifest clues (go.mod):**
+- `github.com/gin-gonic/gin`, `github.com/labstack/echo`
+- `github.com/gofiber/fiber`, `github.com/go-chi/chi`
+- `net/http` with router patterns
+
+**Config and file clues:**
+- `main.go` with `gin.Default()`, `echo.New()`, `fiber.New()`
+- `http.HandleFunc`, `http.ListenAndServe`
+
+**When to load focused guidance:**
+- Load [go-web.md](go-web.md) when you see Gin, Echo, Fiber, Chi, or standard `net/http` router patterns.
+
 ## C / C++
 
 **Build clues:**

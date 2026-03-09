@@ -193,6 +193,9 @@ If the code only shows a broad model or object response without demonstrated sen
 - No query depth or complexity limits
 - Missing field-level authorization
 - Batching attacks possible (multiple operations in one request)
+- Nested fragment/alias abuse for DoS
+- Subscription authentication
+- Directive abuse
 
 **Grep patterns:**
 ```
@@ -205,8 +208,90 @@ If the code only shows a broad model or object response without demonstrated sen
 
 # GraphQL setup
 "ApolloServer|graphqlHTTP|GraphQLModule|Strawberry|graphene|Ariadne|gqlgen"
-(if found, check all the above)
+(if found, check all items below)
+
+# Batch queries
+"batching|batch.*query|allowBatchedHttpRequests"
+
+# Subscriptions
+"subscription|PubSub|withFilter|subscribe\s*:"
+
+# Persisted queries
+"persistedQueries|automaticPersistedQueries|APQ"
 ```
+
+### 7.1 Query Complexity & Cost Analysis
+
+Check whether the GraphQL server enforces:
+- **Max depth limit**: Prevents deeply nested queries (e.g., `user { friends { friends { friends... } } }`)
+- **Complexity/cost limit**: Assigns cost to fields and rejects queries exceeding a budget
+- **Max aliases**: Prevents alias-based DoS (`a1: user(id:1), a2: user(id:2), ... a1000: user(id:1000)`)
+- **Timeout**: Query execution timeout to prevent long-running resolvers
+
+If none of these are configured, report as Medium severity (DoS via resource exhaustion).
+
+### 7.2 Batch Query Abuse
+
+```
+Grep: allowBatchedHttpRequests|batching|batch
+```
+
+Check:
+- Server accepts arrays of operations in a single HTTP request
+- No limit on batch size → send thousands of operations in one request
+- Batch queries bypass per-request rate limiting
+- If batching is enabled, verify batch size is capped
+
+### 7.3 Nested Fragment DoS
+
+Check:
+- No fragment depth/spread limits → circular or deeply nested fragments cause exponential resolution
+- Missing validation of fragment complexity before execution
+- Fragments that reference other fragments without depth limit
+
+### 7.4 Field-Level Authorization
+
+```
+Grep: @auth|@hasRole|@isAuthenticated|directive.*auth
+Grep: fieldResolver|resolve.*context\.user
+```
+
+Check:
+- Sensitive fields (email, phone, SSN, internal IDs) accessible without auth
+- Authorization checked at query level but not at field/resolver level
+- Different users see same fields regardless of role
+- Mutations without authorization directive
+
+### 7.5 Subscription Security
+
+```
+Grep: subscription|PubSub|subscribe\(|onSubscription
+```
+
+Check:
+- Subscription endpoints without authentication
+- Missing authorization on subscription events (user A receives user B's updates)
+- No connection limit per user (resource exhaustion)
+- Sensitive data broadcast to all subscribers
+
+### 7.6 Persisted Queries vs Dynamic Queries
+
+```
+Grep: persistedQueries|automaticPersistedQueries|whitelistQueries
+```
+
+Check:
+- Production server accepting arbitrary dynamic queries (attack surface)
+- If persisted queries are used, verify fallback to dynamic queries is disabled
+- If APQ (Automatic Persisted Queries) is enabled, the first request still sends the full query
+
+### 7.7 Information Disclosure
+
+Check:
+- Introspection enabled in production → exposes full schema
+- Detailed error messages from resolvers (field names, types, internal errors)
+- Suggestion feature enabled (`didYouMean`) → schema enumeration
+- Debug mode enabled in GraphQL server config
 
 ---
 

@@ -12,13 +12,14 @@ agent-rock is an open-source Claude Code skill that performs thorough static sec
 ## Features
 
 - **Auto-detects tech stack** — Works with JS/TS, Python, Java, Go, Ruby, PHP, C#, Rust, C/C++
-- **Framework-aware guidance** — Loads focused heuristics for Express, Django, Spring, Rails, Laravel, Next.js, and FastAPI
+- **Framework-aware guidance** — Loads focused heuristics for Express, Django, Spring, Rails, Laravel, Next.js, FastAPI, NestJS, Flask, ASP.NET Core, and Go web frameworks
 - **Quick and deep modes** — Supports fast triage scans and more exhaustive deep audits
 - **OWASP Top 10:2025** — Scans against the latest OWASP edition including new categories
 - **8 security categories** — Comprehensive coverage from injection to cryptography
 - **Frontend & AI/ML security** — Dedicated modules for SPA frameworks, LLM integrations, and ML pipelines
 - **Cloud-native scanning** — Docker, Kubernetes, Terraform, and serverless security checks
 - **Diff-based review** — `/rock-diff` mode for scanning only changed code (ideal for CI/CD)
+- **Dependency audit** — `/rock-deps` for CVE scanning, license checks, and supply chain risks
 - **Evidence-backed findings** — Every finding includes file path, line number, verified evidence, and confidence
 - **Dual output** — Generates both Markdown and JSON reports for humans and tooling
 - **Consistent finding schema** — Normalizes IDs, confidence, CWE mapping, and ordering across both outputs
@@ -37,6 +38,7 @@ cp -r /tmp/agent-rock/.claude/skills/agent-rock .claude/skills/
 cp -r /tmp/agent-rock/.claude/skills/rock-quick .claude/skills/
 cp -r /tmp/agent-rock/.claude/skills/rock-deep .claude/skills/
 cp -r /tmp/agent-rock/.claude/skills/rock-diff .claude/skills/
+cp -r /tmp/agent-rock/.claude/skills/rock-deps .claude/skills/
 rm -rf /tmp/agent-rock
 ```
 
@@ -49,6 +51,7 @@ cp -r /tmp/agent-rock/.claude/skills/agent-rock ~/.claude/skills/
 cp -r /tmp/agent-rock/.claude/skills/rock-quick ~/.claude/skills/
 cp -r /tmp/agent-rock/.claude/skills/rock-deep ~/.claude/skills/
 cp -r /tmp/agent-rock/.claude/skills/rock-diff ~/.claude/skills/
+cp -r /tmp/agent-rock/.claude/skills/rock-deps ~/.claude/skills/
 rm -rf /tmp/agent-rock
 ```
 
@@ -66,6 +69,7 @@ Use the convenience wrappers:
 /rock-quick
 /rock-deep
 /rock-diff
+/rock-deps
 ```
 
 If you run the command without arguments, it scans the current working directory.

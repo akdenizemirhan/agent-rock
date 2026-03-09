@@ -105,6 +105,10 @@ If you confirm one of these frameworks, load the matching focused guide:
 - Laravel: [laravel.md](references/laravel.md)
 - Next.js / Nuxt.js: [nextjs.md](references/nextjs.md)
 - FastAPI / Starlette: [fastapi.md](references/fastapi.md)
+- NestJS: [nestjs.md](references/nestjs.md)
+- Flask: [flask.md](references/flask.md)
+- ASP.NET Core: [aspnet.md](references/aspnet.md)
+- Go (Gin/Echo/Chi): [go-web.md](references/go-web.md)
 
 If the project contains frontend SPA code (React, Vue, Angular, Svelte), also load:
 - [frontend-security.md](references/frontend-security.md)

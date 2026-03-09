@@ -2,6 +2,7 @@
   "project": "[PROJECT_NAME]",
   "date": "[AUDIT_DATE]",
   "auditor": "agent-rock (Claude Code Security Audit Skill)",
+  "version": "[VERSION]",
   "scope": "[TARGET_DIRECTORY]",
   "audit_mode": "[quick|deep]",
   "tech_stack": [
@@ -83,9 +84,34 @@
   "recommendations_priority_matrix": [
     {
       "priority": "1 - Immediate",
+      "timeline": "Fix now",
       "action": "[Action item]",
       "effort": "[Low|Medium|High]",
       "impact": "[Impact description]"
+    },
+    {
+      "priority": "2 - Short-term",
+      "timeline": "Within 1 week",
+      "action": "[Action item]",
+      "effort": "[Low|Medium|High]",
+      "impact": "[Impact description]"
+    },
+    {
+      "priority": "3 - Medium-term",
+      "timeline": "Within 1 month",
+      "action": "[Action item]",
+      "effort": "[Low|Medium|High]",
+      "impact": "[Impact description]"
+    }
+  ],
+  "compliance_mapping": [
+    {
+      "finding_id": "F-001",
+      "owasp": "[A01-A10]",
+      "cwe": "[CWE-ID]",
+      "pci_dss": "[Requirement #]",
+      "gdpr": "[Article #]",
+      "soc2": "[CC #]"
     }
   ],
   "limitations": [
